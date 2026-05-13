@@ -24,6 +24,7 @@ export default function Sidebar() {
   const navItems = [
     { name: "Farm Overview", href: "/", icon: LayoutDashboard },
     { name: "Digital Twin", href: "/twin", icon: Map },
+    { name: "Hybrid Farming AI", href: "/hybrid", icon: Sprout },
     { name: "Irrigation Control", href: "/irrigation", icon: Droplets },
     { name: "Disease Scanner", href: "/disease", icon: Sprout },
     { name: "Weather Intel", href: "/weather", icon: CloudRain },
