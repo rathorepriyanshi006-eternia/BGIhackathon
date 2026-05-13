@@ -9,10 +9,14 @@ import {
   Activity, 
   Settings,
   Bot,
-  Map
+  Map,
+  Wifi,
+  WifiOff,
+  FlaskConical
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { useFarmData } from "@/context/FarmContext";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -20,17 +24,18 @@ export function cn(...inputs: ClassValue[]) {
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { isLive, lastSeen } = useFarmData();
 
   const navItems = [
-    { name: "Farm Overview", href: "/", icon: LayoutDashboard },
-    { name: "Digital Twin", href: "/twin", icon: Map },
-    { name: "Hybrid Farming AI", href: "/hybrid", icon: Sprout },
-    { name: "Irrigation Control", href: "/irrigation", icon: Droplets },
-    { name: "Disease Scanner", href: "/disease", icon: Sprout },
-    { name: "Weather Intel", href: "/weather", icon: CloudRain },
-    { name: "Analytics", href: "/analytics", icon: Activity },
-    { name: "Niti AI Assistant", href: "/assistant", icon: Bot },
-    { name: "Settings", href: "/settings", icon: Settings },
+    { name: "Farm Overview",     href: "/",          icon: LayoutDashboard },
+    { name: "Digital Twin",      href: "/twin",       icon: Map },
+    { name: "Hybrid Farming AI", href: "/hybrid",     icon: FlaskConical },
+    { name: "Irrigation Control",href: "/irrigation", icon: Droplets },
+    { name: "Disease Scanner",   href: "/disease",    icon: Sprout },
+    { name: "Weather Intel",     href: "/weather",    icon: CloudRain },
+    { name: "Analytics",         href: "/analytics",  icon: Activity },
+    { name: "Niti AI Assistant", href: "/assistant",  icon: Bot },
+    { name: "Settings",          href: "/settings",   icon: Settings },
   ];
 
   return (
@@ -67,13 +72,29 @@ export default function Sidebar() {
         })}
       </nav>
 
+      {/* Hardware Connection Status */}
       <div className="p-4 mt-auto">
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-[rgba(16,185,129,0.1)] to-[rgba(16,24,39,0.5)] border border-[rgba(16,185,129,0.2)]">
+        <div className={`p-4 rounded-2xl border transition-all duration-1000 ${
+          isLive 
+            ? 'bg-gradient-to-br from-[rgba(16,185,129,0.1)] to-[rgba(16,24,39,0.5)] border-[rgba(16,185,129,0.3)]'
+            : 'bg-gradient-to-br from-[rgba(234,179,8,0.05)] to-[rgba(16,24,39,0.5)] border-[rgba(234,179,8,0.2)]'
+        }`}>
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-            <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">System Live</span>
+            {isLive ? (
+              <Wifi className="w-4 h-4 text-emerald-400" />
+            ) : (
+              <WifiOff className="w-4 h-4 text-yellow-500" />
+            )}
+            <span className={`text-xs font-bold uppercase tracking-wider ${isLive ? 'text-emerald-400' : 'text-yellow-400'}`}>
+              {isLive ? 'ESP32 Live' : 'Simulation Mode'}
+            </span>
+            {isLive && <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-auto" />}
           </div>
-          <p className="text-xs text-gray-400">ESP32 Gateway connected. Farm nodes active.</p>
+          <p className="text-xs text-gray-400">
+            {isLive 
+              ? `Live data streaming. Last sync: ${lastSeen}` 
+              : 'Connect ESP32 via WiFi to stream real sensor data.'}
+          </p>
         </div>
       </div>
     </aside>
