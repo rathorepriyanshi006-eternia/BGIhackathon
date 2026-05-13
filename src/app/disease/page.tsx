@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function DiseaseScanner() {
   const [scanning, setScanning] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{ disease: string, confidence: number, severity: string, treatment: string, prevention: string } | null>(null);
 
   const handleScan = () => {
     setScanning(true);

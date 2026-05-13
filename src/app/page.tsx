@@ -173,7 +173,7 @@ export default function FarmOverview() {
   );
 }
 
-function SensorCard({ title, value, icon, trend, status }: any) {
+function SensorCard({ title, value, icon, trend, status }: { title: string, value: string, icon: React.ReactNode, trend: string, status: string }) {
   return (
     <motion.div 
       whileHover={{ y: -5 }}
