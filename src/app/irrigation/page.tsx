@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { Droplets, Power, Settings2, Activity, Play, Square, RefreshCcw } from "lucide-react";
-import { motion } from "framer-motion";
+import React from "react";
+import { Power, Settings2, Activity, Play, Square, RefreshCcw } from "lucide-react";
 
 import { useFarmData } from "@/context/FarmContext";
 

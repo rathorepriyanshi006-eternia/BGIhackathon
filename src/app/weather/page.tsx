@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { CloudRain, Sun, Wind, CloudLightning, ThermometerSun } from "lucide-react";
+import { Sun, Wind, CloudLightning, ThermometerSun } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const weatherData = [

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Bot, Send, Mic, Sparkles, Sprout, Wind, Droplets } from "lucide-react";
-import { motion } from "framer-motion";
+import { Bot, Send, Mic, Sparkles, Wind, Droplets } from "lucide-react";
 
 import { useFarmData } from "@/context/FarmContext";
 

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { User, Cpu, Bell, Shield, Smartphone, HardDrive, Plus, Save, Settings } from "lucide-react";
+import { User, Cpu, Bell, Shield, Smartphone, HardDrive, Plus, Settings } from "lucide-react";
 
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('devices');

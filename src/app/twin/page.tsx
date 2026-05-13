@@ -2,10 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useFarmData } from "@/context/FarmContext";
-import { Droplet, MapPin, Navigation, SignalHigh, Wifi, Thermometer, Wind } from "lucide-react";
+import { Droplet, MapPin, Navigation, SignalHigh, Wifi, Thermometer } from "lucide-react";
 
 export default function DigitalTwin() {
-  const { sensors, isPumpRunning, isAutoMode } = useFarmData();
+  const { sensors, isPumpRunning } = useFarmData();
 
   return (
     <div className="flex flex-col gap-6 w-full h-full pb-10">
